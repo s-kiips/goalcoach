@@ -1,7 +1,6 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {goalRef as sudin}  from '../firebase';
-
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { goalRef } from '../firebase';
 
 class AddGoal extends Component {
     constructor(props) {
@@ -11,13 +10,12 @@ class AddGoal extends Component {
         }
     }
 
-    addGoal(){
-        console.log('this',this);
-        const {title} = this.state;
-        const {email} =this.props;
-        sudin.push({email,title});
+    addGoal() {
+        console.log('this', this);
+        const { title } = this.state;
+        const { email } = this.props.user;
+        goalRef.push({email, title});
     }
-
 
     render() {
         return (
@@ -28,10 +26,13 @@ class AddGoal extends Component {
                         placeholder="Add a goal"
                         className="form-control"
                         style={{marginRight: '5px'}}
-                        onChange={event => this.setState({title: event.target.value})}/>
-                    <button className="btn btn-success"
-                            type="button"
-                    onClick={()=>this.addGoal()}>
+                        onChange={event => this.setState({title: event.target.value})}
+                    />
+                    <button
+                        className="btn btn-success"
+                        type="button"
+                        onClick={() => this.addGoal()}
+                    >
                         Submit
                     </button>
                 </div>
@@ -40,11 +41,12 @@ class AddGoal extends Component {
     }
 }
 
-function mapStateToProps(state){
-    const {email}=state;
+function mapStateToProps(state) {
+    const { user } = state;
     return {
-        email
+        user
     }
 }
 
-export default connect(mapStateToProps,null)(AddGoal);
+
+export default connect(mapStateToProps, null)(AddGoal);

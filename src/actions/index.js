@@ -1,17 +1,25 @@
-import {SIGNED_IN, SET_GOALS} from '../constants';
+import { SIGNED_IN, SET_GOALS, SET_COMPLETED } from '../constants';
 
 export function logUser(email) {
-    const action={
-        type:SIGNED_IN,
+    const action = {
+        type: SIGNED_IN,
         email
     }
     return action;
 }
 
-export function setGoals(goals){
-    const action={
-        type:SET_GOALS,
+export function setGoals(goals) {
+    const action = {
+        type: SET_GOALS,
         goals
+    }
+    return action;
+}
+
+export function setCompleted(completeGoals) {
+    const action = {
+        type: SET_COMPLETED,
+        completeGoals
     }
     return action;
 }
